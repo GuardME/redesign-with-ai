@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.black_btn {
+  @apply rounded-md border border-black bg-black py-2 px-4 text-white transition-all hover:bg-white hover:text-black text-center text-base flex items-center justify-center;
+}
+
+.neu_button {
+  @apply flex p-2 cursor-pointer text-white items-center rounded-md border-2
+  border-black bg-[#033664] px-10 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+   transition-all hover:translate-x-[3px]
+   hover:translate-y-[3px] hover:shadow-none
+}
+
+.neu_button_black {
+  @apply flex p-2 cursor-pointer text-white items-center rounded-md border-2
+  border-black bg-black px-10 py-3 font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]
+   transition-all hover:translate-x-[3px]
+   hover:translate-y-[3px] hover:shadow-none
+}
+
+.purple_gradient {
+  @apply bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 bg-clip-text text-transparent;
+}
+
+.hero_desc {
+  @apply mt-5 text-lg font-light text-gray-500 max-w-2xl md:text-lg;
+}
+
+.dropdown {
+  @apply absolute right-0 top-full mt-3 w-full p-5 rounded-lg bg-white min-w-[210px] flex flex-col gap-2 justify-end items-end border-[1px];
+}
+
+.dropdown_link {
+  @apply text-base text-gray-700 hover:text-gray-500 font-medium;
+}
