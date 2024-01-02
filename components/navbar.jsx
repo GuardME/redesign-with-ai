@@ -1,21 +1,21 @@
-import React from 'react'
-import Logo from "@/components/Logo"
-import Usermenu from "@/components/UserMenu"
-import Container from '@/components/Container'
+import React from "react";
+import Container from "./Container";
+import Logo from "./Logo";
+import UserMenu from "./UserMenu";
 
-const navbar = () => {
+const Navbar = () => {
   return (
-    <div className="w-full bg-white shadow-sm">
-        <div className="py-4 border-b-[1px]">
-            <Container>
-                <div className="flex justify-between item-center">
-                    <Logo />
-                    <Usermenu />
-                </div>
-            </Container>
-        </div>
+    <div className="w-full bg-white border-black shadow-sm z-0">
+      <div className="py-4 border-b-[1px]">
+        <Container>
+          <div className="flex justify-between item-center">
+            <Logo />
+            <UserMenu />
+          </div>
+        </Container>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default navbar
+export default Navbar;
