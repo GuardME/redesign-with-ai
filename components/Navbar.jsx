@@ -1,7 +1,7 @@
 import React from "react";
-import Container from "./Container";
-import Logo from "./Logo";
-import UserMenu from "./UserMenu";
+import Container from "@/components/Container";
+import Logo from "@/components/Logo";
+import UserMenu from "@/components/UserMenu";
 
 const Navbar = () => {
   return (

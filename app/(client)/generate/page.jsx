@@ -10,7 +10,10 @@ import Image from "next/image";
 import { FaTrashAlt } from "react-icons/fa";
 import Toggle from "@/components/Toggle";
 import { CompareSlider } from "@/components/ComponentSlider";
-
+import  appendNewToName  from "@/utils/appendNewToName";
+import { saveAs } from "file-saver";
+import toast from "react-hot-toast";
+import Link from "next/link";
 
 
 const options = {
@@ -29,9 +32,10 @@ const options = {
 };
 
 
+
 const generate = () => {
     const router = useRouter(); 
-    const { data: session, status } = useSession();
+    const { data: session, status, update } = useSession();
     const [theme, setTheme] = useState("Modern");
     const [room, setRoom] = useState("Living Rooms");
     const [originalPhoto, setOriginalPhoto] = useState(null);
@@ -80,9 +84,12 @@ const generate = () => {
             let newPhoto = await response.json();
             if(response.status !== 200) {
                 setError(response.statusText);
+                toast.error(response.statusText)
             } else {
                 setGeneratePhoto(newPhoto[1]);
                 router.refresh()
+                update();
+                toast.success("Success!!")
             }
             setLoading(false)
         }
@@ -133,11 +140,24 @@ const generate = () => {
                                 themes={rooms}
                             />
                         </div>
-                        <div className="mt-8">
+                        {session?.user.credits > 0 && (
+                            <div className="mt-8">
                             <p className="text-center font-medium">
                                 Upload a picture of your room
                             </p>
                         </div>
+                        )}
+
+                        {!(session?.user.credits > 0) && (
+                            <div className="mt-8">
+                            <p className="text-center font-medium">
+                                No More Credits,
+                                <Link href="/pricing">
+                                    Buy Now
+                                </Link>
+                            </p>
+                        </div>
+                        )}
                     </section>
                 )}
 
@@ -165,7 +185,7 @@ const generate = () => {
                     />
                 )}
 
-                {!originalPhoto && <UploadDropZone />}
+                {!originalPhoto && session?.user?.credits > 0 && <UploadDropZone />}
                 {originalPhoto && !generatedPhoto && (
                     <div className="relative">
                         <Image
