@@ -4,8 +4,10 @@ import Image from "next/image";
 import React, { useEffect, useState } from 'react'
 import { BiSolidDownload } from "react-icons/bi";
 import { saveAs } from "file-saver";
+import { useRouter } from "next/navigation";
 
 const MyRoom = () => {
+    const router = useRouter();
     const { data: session, status } = useSession();
     const [myRooms, setMyRooms] = useState([]);
 
@@ -13,7 +15,7 @@ const MyRoom = () => {
     if (status === "unauthenticated") {
       router.push("/");
     }
-    
+
     useEffect(() => {
         const fetchRooms = async () => {
             const response = await fetch(`/api/users/${session?.user.id}/rooms`);
